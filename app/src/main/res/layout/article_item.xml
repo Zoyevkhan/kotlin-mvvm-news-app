@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.news.app.utils.Constants"></import>
+      <variable
+          name="article"
+          type="com.news.app.pojo.Article" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/news_title"
+                android:layout_width="match_parent"
+                android:layout_margin="3dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@{article.title}"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/news_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/news_title"
+                android:layout_marginTop="5dp"
+                bind:imageUrl="@{article.urlToImage}"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/news_desc"
+                android:layout_below="@+id/news_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{article.description}"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#99000000"></TextView>
+
+            <TextView
+                android:id="@+id/publish_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/news_desc"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Publisted At:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/publish_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_below="@+id/news_desc"
+                android:layout_marginLeft="8dp"
+                android:text="@{article.publishedAt}"
+                android:layout_toRightOf="@+id/publish_text"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="8dp">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/music"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/news_desc"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_music" />
+
+            <ImageView
+                android:id="@+id/save"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:visibility="gone"
+                android:layout_below="@+id/news_desc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/save" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_marginTop="2dp"
+            android:id="@+id/search"
+            app:queryHint="Search Your News Here...."
+            app:iconifiedByDefault="false"
+            android:layout_marginLeft="10dp"
+            app:searchIcon="@null"
+
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search_drawable_background"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+        <include layout="@layout/fragment_news_fragment"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/search"
+            android:id="@+id/news"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+    </RelativeLayout>
+</layout>

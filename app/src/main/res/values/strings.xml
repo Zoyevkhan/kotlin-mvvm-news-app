@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GreenPoint</string>
+    <string name="Data_NOT_FOUND">data is not found</string>
+    <string name="NO_INERNET">Check Your Internet</string>
+</resources>
