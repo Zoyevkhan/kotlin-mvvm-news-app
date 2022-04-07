@@ -8,8 +8,9 @@ Model-View-ViewModel (ie MVVM) is a template of a client application architectur
 
 ## MVVM Best Pratice:
 
-- Avoid references to Views in ViewModels.
+- Avoid references to Views in ViewModels if you do then it will leads to the memory leak
 - Instead of pushing data to the UI, let the UI observe changes to it.
+- if you are obsering the data in the fragment then dont pass the lifecycle of activity instead of pass lifecycle of fragment view using viewLifeCycleOwner
 - Distribute responsibilities, add a domain layer if needed.
 - Add a data repository as the single-point entry to your data.
 - Expose information about the state of your data using a wrapper or another LiveData.
