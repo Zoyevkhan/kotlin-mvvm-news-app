@@ -1,35 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.home.HomeActivity">
-
-        <include
-            layout="@layout/layout_custom_toolbar"
-            android:id="@+id/toolbar">
-
-        </include>
+        tools:openDrawer="start"
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_nav"
-            android:layout_below="@+id/toolbar"></RelativeLayout>
+            tools:context=".ui.home.HomeActivity">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav"
+            <include
+                layout="@layout/layout_custom_toolbar"
+                android:id="@+id/toolbar">
+
+            </include>
+
+
+            <RelativeLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_nav"
+                android:layout_below="@+id/toolbar"></RelativeLayout>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/home_bottom_menu"
+                android:layout_alignParentBottom="true">
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+        </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/home_bottom_menu"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+            <ImageView
+                android:id="@+id/news_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/news_image_new"></ImageView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#c4c4c4"
+                android:layout_below="@+id/news_image"
+                ></View>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#c4c4c4"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:text="Category"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#c4c4c4"/>
 
 
-    </RelativeLayout>
-</layout>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_margin="10dp"
+
+                android:layout_width="match_parent"
+                tools:listitem="@layout/nav_recycler_item"
+                android:layout_height="match_parent"
+                android:id="@+id/nav_recycler">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+

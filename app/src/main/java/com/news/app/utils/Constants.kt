@@ -24,5 +24,14 @@ object Constants {
         }
         return camelCase.toString()
     }
+    public fun MutableList<String>.getDummyList():MutableList<String>{
+        with(this){
+            add("Entertainment")
+            add("Business")
+            add("Cricket")
+            add("Politics")
+        }
+        return this
+    }
 
 }

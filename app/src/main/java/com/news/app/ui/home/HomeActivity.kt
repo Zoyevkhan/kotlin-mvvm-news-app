@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.view.Gravity
 import androidx.activity.viewModels
 import com.news.app.database.sessionManager.PreferenceManager
 import com.news.app.databinding.ActivityMainBinding
@@ -25,6 +26,7 @@ import android.view.Window
 import androidx.core.content.ContextCompat
 
 import android.view.WindowManager
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.news.app.R
@@ -33,6 +35,11 @@ import com.news.app.ui.fragments.NewsSavedFragment
 import com.news.app.ui.fragments.NewsSearchFragment
 import com.news.app.ui.listners.NewsAdapterListener
 import com.news.app.utils.extensions.setVisible
+import android.os.Build
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.news.app.ui.adapters.NavigationMenuAdapter
+import com.news.app.ui.adapters.NewsAdapter
 
 
 @AndroidEntryPoint
@@ -54,11 +61,11 @@ class HomeActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DataBindingUtil.setContentView(this, com.news.app.R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         val window: Window = getWindow()
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black))
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.white))
         setContentView(binding.root)
         binding.bottomNav.setOnItemSelectedListener(this)
         //  setRecycler()
@@ -77,12 +84,32 @@ class HomeActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListe
     }
 
     private fun initViews() {
-
+        binding.toolbar.upMenu.setOnClickListener {
+            if(binding.drawer.isDrawerOpen(Gravity.LEFT)){
+                binding.drawer.closeDrawer(Gravity.LEFT)
+            }else{
+                binding.drawer.openDrawer(Gravity.LEFT)
+            }
+        }
         binding.toolbar.ccp.setOnCountryChangeListener(this)
         textToSpeech = TextToSpeech(applicationContext) { i ->
             if (i != TextToSpeech.ERROR) {
                 textToSpeech.language = Locale.ENGLISH
             }
+        }
+        setNavigationRecycler()
+
+    }
+
+    private fun setNavigationRecycler() {
+       val navMenuAdapter = NavigationMenuAdapter(this)
+        var newsLayoutManager = LinearLayoutManager(this)
+        val dividerItemDecoration =
+            DividerItemDecoration(binding.navRecycler.getContext(), newsLayoutManager.getOrientation())
+        binding.navRecycler.apply {
+            adapter = navMenuAdapter
+            layoutManager = newsLayoutManager
+            addItemDecoration(dividerItemDecoration)
         }
     }
 
@@ -121,6 +148,7 @@ class HomeActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListe
     }
 
     fun navigatetoFragment(nextFragment: Fragment) {
+
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, nextFragment)
             commit()
