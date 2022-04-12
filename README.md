@@ -19,3 +19,6 @@ Model-View-ViewModel (ie MVVM) is a template of a client application architectur
 
 ## What is Coroutines ?
  Coroutines  Is light wight threads for asynchronous programming, Coroutines not only open the doors to asynchronous programming, but also provide a wealth of other possibilities such as concurrency, actors, etc.
+ 
+ ## Dagger Hilt ?
+ Dependency Injection (DI) is a design pattern to decouple the conventional dependency relationship between objects. When it comes to DI in android Dagger always takes a lead. But it is very complex and requires a lot of boilerplate codes in order to setup the Dagger. So, to overcome this problem Hilt was introduced. Dagger Hilt simplifies the whole process and reduces the unnecessary steps without losing any of the features of the original Dagger.
