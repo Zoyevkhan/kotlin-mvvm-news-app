@@ -53,6 +53,7 @@ class HomeActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListe
     val binding get() = _binding!!
     lateinit var selectedCountryName: String
     var lastSelectedCountryName: String = "India"
+    var lastSelectedCountryNameCode: String = "In"
     val mHomeViewModel: HomeViewModel by viewModels()
     lateinit var textToSpeech: TextToSpeech
 
@@ -116,6 +117,7 @@ class HomeActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListe
     override fun onCountrySelected() {
         selectedCountryName = binding.toolbar.ccp.selectedCountryEnglishName
         if (!lastSelectedCountryName.equals(selectedCountryName, true)) {
+            lastSelectedCountryNameCode=binding.toolbar.ccp.selectedCountryNameCode
             mHomeViewModel.getNewsByCountry(binding.toolbar.ccp.selectedCountryNameCode)
         } else {
             toast("You Have Selected Same Country")
@@ -183,6 +185,12 @@ class HomeActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListe
 
     fun showCountryPicker(shouldShow: Boolean) {
         binding.toolbar.ccp.setVisible(shouldShow)
+    }
+    fun navMenuClicked(catagory:String){
+        if(binding.drawer.isDrawerOpen(Gravity.LEFT)){
+            binding.drawer.closeDrawer(Gravity.LEFT)
+        }
+        mHomeViewModel.getNewsByCountry(lastSelectedCountryNameCode,catagory)
     }
 
 }

@@ -20,11 +20,7 @@ class AppModule {
     @Singleton
     fun provideBaseUrl() = Constants.baseURL
 
-    @Provides
-    @Singleton
-    fun provideSharedPref(@ApplicationContext appContext: Context): PreferenceManager {
-        return PreferenceManager(appContext)
-    }
+
 
 
 

@@ -41,6 +41,7 @@ class NavigationMenuAdapter(val context: Context) :
                 }
                 selectedPosition=position
                 notifyDataSetChanged()
+                (context as HomeActivity).navMenuClicked(catName.text.toString())
 
             }
         }

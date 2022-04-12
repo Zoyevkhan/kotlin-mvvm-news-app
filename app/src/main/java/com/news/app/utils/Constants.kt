@@ -8,6 +8,7 @@ object Constants {
     val prefName="GreenPointPref"
     val baseURL="https://newsapi.org/"
     val API_KEY="c142e3ac2bfb4a1aa3dd71a4b7ba6768"
+    val PAGE_SIZE=100
     val API_RES_KEY_FOR_LOCAL=" https://newsapi.org/v2/top-headlines?country=in&apiKey=c142e3ac2bfb4a1aa3dd71a4b7ba6768"
     @JvmStatic
     public fun String.convertToCamelCase(): String {
@@ -28,8 +29,12 @@ object Constants {
         with(this){
             add("Entertainment")
             add("Business")
-            add("Cricket")
-            add("Politics")
+            add("general")
+            add("health")
+            add("Science")
+            add("Sports")
+            add("Technology")
+
         }
         return this
     }

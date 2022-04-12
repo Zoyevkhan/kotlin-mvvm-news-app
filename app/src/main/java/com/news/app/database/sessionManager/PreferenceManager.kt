@@ -2,10 +2,11 @@ package com.news.app.database.sessionManager
 
 import android.content.Context
 import com.news.app.utils.Constants.prefName
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 
-class PreferenceManager constructor(val context: Context) {
-
+class PreferenceManager @Inject constructor(@ApplicationContext val context: Context) {
 
     fun saveBoolean(key: String, value: Boolean) {
         context

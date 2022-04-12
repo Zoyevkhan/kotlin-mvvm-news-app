@@ -9,14 +9,16 @@
           type="com.news.app.pojo.Article" />
     </data>
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -27,7 +29,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="@{article.title}"
+                android:text="@{Constants.convertToCamelCase(article.title)}"
                 android:layout_height="wrap_content">
 
             </TextView>
@@ -71,12 +73,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:layout_below="@+id/news_desc"
-                android:layout_marginLeft="8dp"
+                android:layout_below="@+id/publish_text"
                 android:text="@{article.publishedAt}"
-                android:layout_toRightOf="@+id/publish_text"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="5dp">
 
             </TextView>
 
@@ -87,6 +87,7 @@
                 android:layout_below="@+id/news_desc"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_music" />
 
             <ImageView
@@ -94,6 +95,7 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:visibility="gone"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/news_desc"
                 android:layout_centerHorizontal="true"
                 android:layout_marginEnd="10dp"
@@ -102,5 +104,5 @@
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

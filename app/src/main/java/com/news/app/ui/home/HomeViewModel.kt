@@ -23,7 +23,6 @@ class HomeViewModel @Inject constructor(
     val session: PreferenceManager
 ) : ViewModel() {
 
-
     private var news: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     private var newsSearch: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     private var saveNews: MutableLiveData<List<Article>> = MutableLiveData()
@@ -36,12 +35,12 @@ class HomeViewModel @Inject constructor(
         getNewsByCountry("IN")
     }
 
-    fun getNewsByCountry(country: String) {
+    fun getNewsByCountry(country: String,category: String="") {
         news.value = Resource.isLoading()
         viewModelScope.launch {
             if (Helper.isOnline(context)) {
                 try {
-                    var apiResponse = repo.getNewsByCountry(country)
+                    var apiResponse = repo.getNewsByCountry(country,category)
                     if (apiResponse.isSuccessful) {
                         apiResponse.body()?.let { newsResponse ->
                             news.value = Resource.Success(newsResponse)

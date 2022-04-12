@@ -10,14 +10,14 @@ import retrofit2.http.QueryMap
 interface ApiService {
     @GET("v2/top-headlines")
     suspend fun getNewsByCountry(
-        @Query("country")country: String="IN",
-        @Query("apiKey")apiKey: String="${Constants.API_KEY}"
+        @QueryMap params:HashMap<String,Any>
     ):Response<NewsResponse>
 
 
     @GET("v2/everything")
     suspend fun getNewsBySeach(
         @Query("q")query: String,
+        @Query("pageSize")pageSize: Int=100,
         @Query("apiKey")apiKey: String="${Constants.API_KEY}"
     ):Response<NewsResponse>
 }
